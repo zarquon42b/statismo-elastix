@@ -60,6 +60,9 @@
 #include "itkAdvancedTransform.h"
 #include "itkExceptionObject.h"
 #include "itkMacro.h"
+#include "itkImage.h"
+#include "itkVector.h"
+
 
 namespace itk
 {
@@ -147,7 +150,11 @@ public:
   typedef typename Superclass::InternalMatrixType   InternalMatrixType;
 
 	typedef TRepresenter RepresenterType;
-	typedef itk::StatisticalModel<RepresenterType> StatisticalModelType;
+	//typename RepresenterType::VectorImageType ImageType //statismo 0.11
+	    typedef itk::Vector<TScalarType , TDimension> VectorPixelType;
+		typedef itk::Image<VectorPixelType, TDimension> VectorImageType;
+
+	typedef itk::StatisticalModel<VectorImageType>  StatisticalModelType;
 
   /** Set the transformation to an Identity
    * This sets the matrix to identity and the Offset to null.
@@ -307,7 +314,7 @@ private:
 
 }  // namespace itk
 
-#if ITK_TEMPLATE_TXX
+#if ITK_MANUAL_INSTANTIATION
 # include "itkAdvancedStatisticalModelTransformBase.txx"
 #endif
 

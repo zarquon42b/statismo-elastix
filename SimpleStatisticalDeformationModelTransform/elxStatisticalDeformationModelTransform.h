@@ -20,7 +20,10 @@
 
 
 #include "itkStatisticalModel.h"
-#include "Representers/ITK/itkVectorImageRepresenter.h"
+#include "itkStandardImageRepresenter.h"
+//#include "Representers/ITK/itkVectorImageRepresenter.h"
+
+//#include "itkStatisticalModelTransformBase.h"
 #include "elxIncludes.h"
 #include "itkImage.h"
 #include "itkVector.h"
@@ -123,8 +126,17 @@ namespace elastix
     typedef typename Superclass2::CombinationTransformType  CombinationTransformType;
 
     /** Statismo typedefs */
-    typedef itk::VectorImageRepresenter<CoordRepType, elx::TransformBase<TElastix>::FixedImageDimension, elx::TransformBase<TElastix>::FixedImageDimension> RepresenterType;
-    typedef itk::StatisticalModel<RepresenterType> StatisticalModelType;
+
+    //typedef itk::VectorImageRepresenter<CoordRepType, elx::TransformBase<TElastix>::FixedImageDimension, elx::TransformBase<TElastix>::FixedImageDimension> RepresenterType;
+    //typedef itk::StatisticalModel<RepresenterType> StatisticalModelType;
+
+	
+	typedef itk::Vector<CoordRepType, elx::TransformBase<TElastix>::FixedImageDimension> VectorPixelType;
+    typedef itk::Image<VectorPixelType, elx::TransformBase<TElastix>::FixedImageDimension> ImageType;
+    typedef itk::StandardImageRepresenter<VectorPixelType, elx::TransformBase<TElastix>::FixedImageDimension> RepresenterType;
+	typedef itk::StatisticalModel<ImageType> StatisticalModelType;
+
+
 
     /** The ITK-class that provides most of the functionality, and
      * that is set as the "CurrentTransform" in the CombinationTransform */
@@ -175,6 +187,7 @@ namespace elastix
 
     StatisticalDeformationModelTransformPointer m_StatisticalDeformationModelTransform;
     typename StatisticalModelType::Pointer m_StatisticalModel;
+	typename RepresenterType::Pointer m_Representer;
     std::string m_StatisticalModelName;
 
 
