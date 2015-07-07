@@ -83,7 +83,7 @@ namespace itk
 
 template <
 	class TRepresenter,									// Statismo Representer
-  class TScalarType=double,         // Data type for scalars
+  class TScalarType=float,         // Data type for scalars
   unsigned int TDimension=3  // Number of dimensions in the input space
   >
 class AdvancedStatisticalModelTransformBase
@@ -314,7 +314,7 @@ private:
 
 }  // namespace itk
 
-#if ITK_MANUAL_INSTANTIATION
+#ifndef ITK_MANUAL_INSTANTIATION //taken from http://www.vtk.org/Wiki/ITK/Coding_Style_Guide#Class_Layout
 # include "itkAdvancedStatisticalModelTransformBase.txx"
 #endif
 
