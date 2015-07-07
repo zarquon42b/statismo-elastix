@@ -23,7 +23,7 @@
 #include "itkStandardImageRepresenter.h"
 //#include "Representers/ITK/itkVectorImageRepresenter.h"
 
-//#include "itkStatisticalModelTransformBase.h"
+#include "itkStatisticalModelTransformBase.h"
 #include "elxIncludes.h"
 #include "itkImage.h"
 #include "itkVector.h"
@@ -187,7 +187,6 @@ namespace elastix
 
     StatisticalDeformationModelTransformPointer m_StatisticalDeformationModelTransform;
     typename StatisticalModelType::Pointer m_StatisticalModel;
-	typename RepresenterType::Pointer m_Representer;
     std::string m_StatisticalModelName;
 
 
