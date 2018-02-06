@@ -21,6 +21,7 @@
 
 #include "itkStatisticalModel.h"
 #include "itkStandardImageRepresenter.h"
+#include "itkStatismoIO.h"
 
 #include "elxIncludes.h"
 #include "itkImage.h"

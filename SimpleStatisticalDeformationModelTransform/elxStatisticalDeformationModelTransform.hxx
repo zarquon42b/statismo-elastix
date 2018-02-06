@@ -86,8 +86,8 @@ namespace elastix
     this->GetConfiguration()->ReadParameter( m_StatisticalModelName,
       "StatisticalModelName", 0);
     typename StatisticalModelType::Pointer statisticalModel = StatisticalModelType::New();
-	typename RepresenterType::Pointer representer = RepresenterType::New();
-	statisticalModel->Load(representer,m_StatisticalModelName.c_str());
+    typename RepresenterType::Pointer representer = RepresenterType::New();
+	statisticalModel = itk::StatismoIO<ImageType>::LoadStatisticalModel(representer,m_StatisticalModelName.c_str());
 
     unsigned usedNumberOfStatisticalModelCoefficients = 0;
     this->GetConfiguration()->ReadParameter( usedNumberOfStatisticalModelCoefficients,  "UsedNumberOfStatisticalModelCoefficients", 0, false);
